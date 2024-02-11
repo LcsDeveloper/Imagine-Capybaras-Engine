@@ -2,12 +2,12 @@
 
 #pragma once
 
-#include "glad.h"
-#include "glfw3.h"
-#include "stb_image.h"
+#include "include/glad.h"
+#include "include/glfw3.h"
+#include "include/stb_image.h"
 
 #define GLT_IMPLEMENTATION
-#include "gltext.h"
+#include "include/gltext.h"
 
 #include <math.h>
 
@@ -119,6 +119,7 @@ void updateWindow(Window* win);
 void _frameBufferSizeCallback(GLFWwindow* win, int w, int h);
 void processInput(Window* win);
 void fprocessWindow();
+void createShaderDefault(Shader* shader);
 void createShader(Shader* shader, const char* vertexPath, const char* fragmentPath);
 void setShader(Shader* slot, Shader* shader);
 void useShader(Shader* shader);
@@ -143,6 +144,5 @@ void setText(Text* text, const char* string);
 void drawText(Text* text);
 void deleteText(Text* text);
 void createSquare(Square* square, Window* win);
-void setSquarePosition(Square* square, float x, float y, float z);
 void drawSquare(Square* square, Cam* cam);
 void deleteSquare(Square* square);

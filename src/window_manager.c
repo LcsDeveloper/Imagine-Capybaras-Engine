@@ -12,18 +12,14 @@ Window createWindow(int width, int height){
     win.window = glfwCreateWindow(width, height, "Testes", NULL, NULL);
 
     if(win.window == NULL){
-        printf("Failed to create GLFW window; \n");
         glfwTerminate();
-        exit(0);;
     }
     glfwMakeContextCurrent(win.window);
-    glfwSetFramebufferSizeCallback(win.window, _framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(win.window, _frameBufferSizeCallback);
 
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-        printf("Failed to initialize GLAD; \n");
         glfwTerminate();
-        exit(0);
     }
 
     glEnable(GL_DEPTH_TEST);
@@ -45,7 +41,7 @@ void updateWindow(Window* win){
     glfwPollEvents();
 }
 
-void _framebuffer_size_callback(GLFWwindow* win, int w, int h){
+void _frameBufferSizeCallback(GLFWwindow* win, int w, int h){
     glViewport(0, 0, w, h);
 }
 

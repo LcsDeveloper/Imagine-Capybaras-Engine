@@ -3,7 +3,7 @@
 
 void createSquare(Square* square, Window* win){
 
-    createShader(&(square->shader), "shaders/vertex.vs", "shaders/fragment.fs");
+    createShaderDefault(&(square->shader));
     square->texture.data = NULL;
 
     square->position.x = 0;

@@ -31,6 +31,6 @@ Window createWindow(int width, int height);
 int isClosedWindow(Window* win);
 void clearDisplay();
 void updateWindow(Window* win);
-void _framebuffer_size_callback(GLFWwindow* win, int w, int h);
+void _frameBufferSizeCallback(GLFWwindow* win, int w, int h);
 void processInput(Window* win);
 void fprocessWindow();

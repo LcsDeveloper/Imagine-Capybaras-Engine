@@ -25,7 +25,7 @@ typedef struct{
 
 void createSquare(Square* square, Window* win);
 
-void setSquarePosition(Square* square, float x, float y, float z);
+//void setSquarePosition(Square* square, float x, float y, float z);
 //void setSquareColor(Square* square, float r, float g, float b, float a);
 //void setSquareScale(Square* square, float x, float y, float z);
 //void setSquareRotation(Square* square, float x, float y, float z);

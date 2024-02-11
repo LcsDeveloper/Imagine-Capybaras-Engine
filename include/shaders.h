@@ -10,6 +10,7 @@ typedef struct{
     unsigned int id;
 }Shader;
 
+void createShaderDefault(Shader* shader);
 void createShader(Shader* shader, const char* vertexPath, const char* fragmentPath);
 void setShader(Shader* slot, Shader* shader);
 void useShader(Shader* shader);
