@@ -1,6 +1,7 @@
 #include "../include/shaders.h"
 
-void createShaderDefault(Shader* shader){
+void createShaderTexture(Shader* shader){
+    deleteShader(shader);
     const char* _vertex_shader_default =
     "#version 330 core\n"
     "layout (location = 0) in vec3 p;\n"
@@ -18,7 +19,7 @@ void createShaderDefault(Shader* shader){
     "    gl_Position =  vec4(p, 1.0f) * rot_z * rot_y * rot_x * translate_scale * view * projection;\n"
     "    fragColor = c;\n"
     "    texCoord = t;\n"
-    "}\n";
+    "}\0";
 
     const char* _fragment_shader_default =
     "#version 330 core\n"
@@ -32,7 +33,54 @@ void createShaderDefault(Shader* shader){
     "    if(texColor.a < 0.1)\n"
     "        discard;\n"
     "    Color = texColor;\n"
-    "}\n";
+    "}\0";
+
+    unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertex, 1, &_vertex_shader_default, NULL);
+    glCompileShader(vertex);
+
+    unsigned int fragment = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragment, 1, &_fragment_shader_default, NULL);
+    glCompileShader(fragment);
+
+    shader->id = glCreateProgram();
+    glAttachShader(shader->id, vertex);
+    glAttachShader(shader->id, fragment);
+    glLinkProgram(shader->id);
+
+    glDeleteShader(vertex);
+    glDeleteShader(fragment);
+}
+
+void createShaderDefault(Shader* shader){
+    const char* _vertex_shader_default =
+    "#version 330 core\n"
+    "layout (location = 0) in vec3 p;\n"
+    "layout (location = 1) in vec3 c;\n"
+    "layout (location = 2) in vec2 t;\n"
+    "out vec3 fragColor;\n"
+    "uniform mat4 translate_scale;\n"
+    "uniform mat4 rot_x;\n"
+    "uniform mat4 rot_y;\n"
+    "uniform mat4 rot_z;\n"
+    "uniform mat4 view;\n"
+    "uniform mat4 projection;\n"
+    "void main(){\n"
+    "    gl_Position =  vec4(p, 1.0f) * rot_z * rot_y * rot_x * translate_scale * view * projection;\n"
+    "    fragColor = c;\n"
+    "}\0";
+
+    const char* _fragment_shader_default =
+    "#version 330 core\n"
+    "out vec4 Color;\n"
+    "in vec3 fragColor;\n"
+    "uniform vec4 color;\n"
+    "void main(){\n"
+    "    vec4 texColor = vec4(fragColor.x + color.x, fragColor.y + color.y, fragColor.z + color.z, color.w);\n"
+    "    if(texColor.a < 0.1)\n"
+    "        discard;\n"
+    "    Color = texColor;\n"
+    "}\0";
 
     unsigned int vertex = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex, 1, &_vertex_shader_default, NULL);

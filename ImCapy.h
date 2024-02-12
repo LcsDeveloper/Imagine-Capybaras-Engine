@@ -119,6 +119,7 @@ void updateWindow(Window* win);
 void _frameBufferSizeCallback(GLFWwindow* win, int w, int h);
 void processInput(Window* win);
 void fprocessWindow();
+void createShaderTexture(Shader* shader);
 void createShaderDefault(Shader* shader);
 void createShader(Shader* shader, const char* vertexPath, const char* fragmentPath);
 void setShader(Shader* slot, Shader* shader);

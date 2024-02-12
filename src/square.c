@@ -4,6 +4,7 @@
 void createSquare(Square* square, Window* win){
 
     createShaderDefault(&(square->shader));
+
     square->texture.data = NULL;
 
     square->position.x = 0;

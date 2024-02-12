@@ -1,7 +1,7 @@
 #include "../include/texture.h"
 
 void createTexture(Texture* texture, const char* texturePath){
-    stbi_set_flip_vertically_on_load(true);
+    stbi_set_flip_vertically_on_load(1);
     texture->data = stbi_load(texturePath, &(texture->width), &(texture->height), &(texture->Channels), STBI_rgb_alpha);    
 }
 
