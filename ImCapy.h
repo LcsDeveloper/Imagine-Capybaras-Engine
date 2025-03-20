@@ -68,6 +68,7 @@ typedef struct{
 
 typedef struct{
     int width, height, Channels;
+    unsigned int texture_map;
     unsigned char* data;
 }Texture;
 
@@ -112,7 +113,7 @@ void setRotation(Rotation* rotation, float x, float y, float z);
 void setColor(Color* color, float r, float g, float b, float a);
 void getTime(Time* time);
 int isColliding(Collision* collider1, Collision* collider2);
-Window createWindow(int width, int height);
+Window createWindow(int width, int height, const char* title);
 int isClosedWindow(Window* win);
 void clearDisplay();
 void updateWindow(Window* win);

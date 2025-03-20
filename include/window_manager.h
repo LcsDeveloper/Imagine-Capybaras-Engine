@@ -27,7 +27,7 @@ typedef struct{
 }Window;
 
 
-Window createWindow(int width, int height);
+Window createWindow(int width, int height, const char* title);
 int isClosedWindow(Window* win);
 void clearDisplay();
 void updateWindow(Window* win);

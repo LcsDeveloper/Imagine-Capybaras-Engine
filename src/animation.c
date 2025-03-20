@@ -15,7 +15,7 @@ void runAnimation(Texture* texture, Animation* animation, float deltaTime){
         animation->_frame++;
         animation->_time = 0;
     }
-    if(animation->_frame >= animation->size){
+    if(animation->_frame > animation->size){
         animation->_frame = 0;
     }
     texture->data = (animation->frames + animation->_frame)->data;
@@ -25,7 +25,7 @@ void runAnimation(Texture* texture, Animation* animation, float deltaTime){
 }
 
 void deleteAnimation(Animation* animation){
-    for(int i = 0; i <= animation->size; i++){
+    for(int i = 0; i < animation->size; i++){
         deleteTexture(animation->frames + i);
     }
 }

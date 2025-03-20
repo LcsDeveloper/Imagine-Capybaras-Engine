@@ -1,6 +1,6 @@
 #include "../include/window_manager.h"
 
-Window createWindow(int width, int height){
+Window createWindow(int width, int height, const char* title){
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -9,13 +9,12 @@ Window createWindow(int width, int height){
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     Window win;
-    win.window = glfwCreateWindow(width, height, "Testes", NULL, NULL);
+    win.window = glfwCreateWindow(width, height, title, NULL, NULL);
 
     if(win.window == NULL){
         glfwTerminate();
     }
     glfwMakeContextCurrent(win.window);
-    glfwSetFramebufferSizeCallback(win.window, _frameBufferSizeCallback);
 
 
     if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
@@ -23,6 +22,8 @@ Window createWindow(int width, int height){
     }
 
     glEnable(GL_DEPTH_TEST);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
     
     return win;
 }

@@ -6,6 +6,7 @@
 
 typedef struct{
     int width, height, Channels;
+    unsigned int texture_map;
     unsigned char* data;
 }Texture;
 
